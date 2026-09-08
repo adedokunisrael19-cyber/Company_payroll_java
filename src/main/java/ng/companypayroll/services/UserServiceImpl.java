@@ -17,23 +17,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponse CreateUser(UserRequest request) {
-        User user = new User();
-
-        user.setFullName(request.getFullName());
-        user.setPassword(request.getPassword());
-        user.setEmail(request.getEmail());
-        user.setRole(request.getRole());
 
         User savedUser = userRepository.save(user);
 
-        UserResponse response = new UserResponse();
 
-        response.setId(savedUser.getId());
-        response.setFullName(savedUser.getFullName());
-        response.setEmail(savedUser.getEmail());
-        response.setRole(savedUser.getRole());
-
-        return response;
     }
 
     @Override
