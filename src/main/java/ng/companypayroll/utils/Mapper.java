@@ -3,7 +3,10 @@ package ng.companypayroll.utils;
 import ng.companypayroll.data.model.User;
 import ng.companypayroll.dto.request.UserRequest;
 import ng.companypayroll.dto.response.UserResponse;
+import org.springframework.stereotype.Component;
 
+
+@Component
 public class Mapper {
     public static User map(UserRequest request){
         User user = new User();
