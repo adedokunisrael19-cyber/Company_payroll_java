@@ -4,11 +4,14 @@ package ng.companypayroll.services;
 import ng.companypayroll.data.model.User;
 import ng.companypayroll.data.repository.UserRepository;
 import ng.companypayroll.dto.request.UserRequest;
+import ng.companypayroll.dto.request.UserUpdateRequest;
 import ng.companypayroll.dto.response.UserResponse;
 import ng.companypayroll.exceptions.UserAlreadyExistException;
 import ng.companypayroll.exceptions.UserNotFoundException;
 import ng.companypayroll.utils.Mapper;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -35,11 +38,28 @@ public class UserServiceImpl implements UserService {
                 new UserNotFoundException("user not found"));
         return Mapper.map(user);
     }
-//
-//    @Override
-//    public UserResponse UpdateUser(String email) {
-//        User user = userRepository.findByEmail(email);
-//        return null;
-//    }
+
+    @Override
+    public UserResponse UpdateUser(String Id, UserUpdateRequest request) {
+        User user = userRepository.findById(Id)
+                .orElseThrow(() ->
+                new UserNotFoundException("User not found"));
+
+        Optional<User> existingUser = userRepository.findByEmail(request.getEmail());
+
+        if (existingUser.isPresent() && !existingUser.get().getId().equals(Id)) {
+            throw new UserAlreadyExistException("Email already exists");
+        }
+
+        user.setFullName(request.getFullName());
+        user.setEmail(request.getEmail());
+        user.setPassword(request.getPassword());
+        user.setRole(request.getRole());
+
+        User updatedUser = userRepository.save(user);
+
+        return Mapper.map(updatedUser);
+    }
+
 }
 
