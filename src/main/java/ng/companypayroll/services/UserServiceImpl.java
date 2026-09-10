@@ -6,6 +6,7 @@ import ng.companypayroll.data.repository.UserRepository;
 import ng.companypayroll.dto.request.UserRequest;
 import ng.companypayroll.dto.response.UserResponse;
 import ng.companypayroll.exceptions.UserAlreadyExistException;
+import ng.companypayroll.exceptions.UserNotFoundException;
 import ng.companypayroll.utils.Mapper;
 import org.springframework.stereotype.Service;
 
@@ -29,8 +30,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponse UpdateUser(UserRequest request) {
-        return null;
+    public UserResponse getUserbyId(String Id) {
+        User user = userRepository.findById(Id).orElseThrow(() ->
+                new UserNotFoundException("user not found"));
+        return Mapper.map(user);
     }
+//
+//    @Override
+//    public UserResponse UpdateUser(String email) {
+//        User user = userRepository.findByEmail(email);
+//        return null;
+//    }
 }
 

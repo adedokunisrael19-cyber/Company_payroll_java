@@ -6,6 +6,7 @@ import ng.companypayroll.dto.response.UserResponse;
 
 public interface UserService {
     UserResponse CreateUser(UserRequest request);
-    UserResponse UpdateUser(UserRequest request);
+    UserResponse getUserbyId(String Id);
+   // UserResponse UpdateUser(UserRequest request);
 
 }
