@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+
 @Service
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
@@ -22,7 +23,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponse CreateUser(UserRequest request) {
+    public UserResponse createUser(UserRequest request) {
         if(userRepository.findByEmail(request.getEmail()).isPresent()){
             throw new UserAlreadyExistException("User already exist");
         }
@@ -40,7 +41,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponse UpdateUser(String Id, UserUpdateRequest request) {
+    public UserResponse updateUser(String Id, UserUpdateRequest request) {
         User user = userRepository.findById(Id)
                 .orElseThrow(() ->
                 new UserNotFoundException("User not found"));
@@ -60,6 +61,14 @@ public class UserServiceImpl implements UserService {
 
         return Mapper.map(updatedUser);
     }
+
+    @Override
+    public void deleteUser(String Id) {
+        User user = userRepository.findById(Id).orElseThrow(() ->
+                new UserNotFoundException("User not found"));
+        userRepository.delete(user);
+    }
+
 
 }
 

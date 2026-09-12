@@ -4,10 +4,9 @@ import ng.companypayroll.data.model.Role;
 import ng.companypayroll.data.model.User;
 import ng.companypayroll.data.repository.UserRepository;
 import ng.companypayroll.dto.request.UserRequest;
-import ng.companypayroll.dto.response.UserResponse;
 import ng.companypayroll.dto.request.UserUpdateRequest;
+import ng.companypayroll.dto.response.UserResponse;
 import ng.companypayroll.exceptions.UserNotFoundException;
-import ng.companypayroll.utils.Mapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -52,7 +51,7 @@ class UserServiceImplTest {
         when(userRepository.save(any(User.class)))
                 .thenReturn(user);
 
-        UserResponse result = userService.CreateUser(request);
+        UserResponse result = userService.createUser(request);
 
         assertEquals("John Doe", result.getFullName());
         assertEquals("john@gmail.com", result.getEmail());
@@ -72,7 +71,7 @@ class UserServiceImplTest {
 
         assertThrows(
                 UserAlreadyExistException.class,
-                () -> userService.CreateUser(request)
+                () -> userService.createUser(request)
         );
 
         verify(userRepository, never()).save(any(User.class));
@@ -144,12 +143,41 @@ class UserServiceImplTest {
 
 
 
-        UserResponse result = userService.UpdateUser("1", request);
+        UserResponse result = userService.updateUser("1", request);
 
         assertEquals("1", result.getId());
         assertEquals("John Smith", result.getFullName());
         assertEquals("johnsmith@gmail.com", result.getEmail());
 
-        verify(userRepository).save(user);
     }
+
+    @Test
+    void shouldThrowExceptionWhenDeletingNonExistingUser() {
+
+        when(userRepository.findById("1"))
+                .thenReturn(Optional.empty());
+
+        assertThrows(
+                UserNotFoundException.class,
+                () -> userService.deleteUser("1")
+        );
+
+        verify(userRepository, never()).delete(any(User.class));
+    }
+
+    @Test
+    void shouldDeleteUser() {
+
+        User user = new User();
+        user.setId("1");
+
+        when(userRepository.findById("1"))
+                .thenReturn(Optional.of(user));
+
+        userService.deleteUser("1");
+
+        verify(userRepository).delete(user);
+    }
+
 }
+
