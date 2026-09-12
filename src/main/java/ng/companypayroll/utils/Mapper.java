@@ -2,6 +2,7 @@ package ng.companypayroll.utils;
 
 import ng.companypayroll.data.model.User;
 import ng.companypayroll.dto.request.UserRequest;
+import ng.companypayroll.dto.response.LoginResponse;
 import ng.companypayroll.dto.response.UserResponse;
 import org.springframework.stereotype.Component;
 
@@ -30,4 +31,14 @@ public class Mapper {
         return response;
     }
 
+    public static LoginResponse map(User user){
+        UserResponse response = new UserResponse();
+
+        response.setId(user.getId());
+        response.setFullName(user.getFullName());
+        response.setEmail(user.getEmail());
+        response.setRole(user.getRole());
+
+        return response;
+    }
 }

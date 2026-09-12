@@ -14,7 +14,7 @@ public class AuthServiceImpl {
     @Autowired
     private UserRepository userRepository;
 
-    public UserResponse login(LoginRequest request) throws InvalidCredentials {
+    public LoginResponse login(LoginRequest request) throws InvalidCredentials {
         User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() ->
                         new UserNotFoundException("User not found"));
