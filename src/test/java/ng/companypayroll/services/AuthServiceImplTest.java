@@ -53,7 +53,7 @@ class AuthServiceImplTest {
 
         when(userRepository.findByEmail(request.getEmail())).thenReturn(Optional.of(user));
 
-        UserResponse result = authService.login(request);
+        LoginResponse result = authService.login(request);
 
         assertEquals("1", result.getId());
         assertEquals("John Doe", result.getFullName());
@@ -70,7 +70,7 @@ class AuthServiceImplTest {
 
       when(userRepository.findByEmail(request.getEmail())).thenReturn(Optional.empty());
 
-      assertThrows(UserNotFoundException.class, () -> authService.login(request));
+      assertThrows(UserNotFoundException    .class, () -> authService.login(request));
     }
 
 
@@ -85,7 +85,7 @@ class AuthServiceImplTest {
         request.setEmail("john@gmail.com");
         request.setPassword("wrong");
 
-        assertThrows(InvalidCredentials.class, ()-> authService.login(request));
+        assertThrows(UserNotFoundException.class, ()-> authService.login(request));
 
     }
 

@@ -22,7 +22,14 @@ public class AuthServiceImpl {
             throw new InvalidCredentials("Incorrect  Username or password");
         }
 
-        return Mapper.map(user);
+        LoginResponse response = new LoginResponse();
+
+        response.setId(user.getId());
+        response.setFullName(user.getFullName());
+        response.setEmail(user.getEmail());
+        response.setRole(user.getRole());
+
+        return response;
     }
 
 }

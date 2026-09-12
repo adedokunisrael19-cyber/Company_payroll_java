@@ -31,14 +31,4 @@ public class Mapper {
         return response;
     }
 
-    public static LoginResponse map(User user){
-        UserResponse response = new UserResponse();
-
-        response.setId(user.getId());
-        response.setFullName(user.getFullName());
-        response.setEmail(user.getEmail());
-        response.setRole(user.getRole());
-
-        return response;
-    }
 }
