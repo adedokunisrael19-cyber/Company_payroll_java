@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div id="toast" class="toast"></div>
+
+        <div class="left-section">
+            <h1 class="typing-effect"> Welcome To Company Payroll Management System</h1>
+           <p>Track and manage user engagement on your app</p>
+        </div>
+
+        <div class="right-section">
+            <h1>Welcome back</h1>
+            <p>Login to continue</p>
+            
+            <input type="email" id="login-email" placeholder="Enter your email">
+            <input type="password" id="login-password" placeholder="Enter your password">
+            <button id="login-submit-btn">Login</button>
+
+            <span class="register-text">Don't have an account? <a href="register.html" id="go-to-register">Register</a></span>
+        </div>
+
+    </div>
+
+    <script src="auth.js"></script>
+
+</body>
+
+</html>

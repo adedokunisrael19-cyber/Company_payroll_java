@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Register</title>
+    <link rel="preconnect" href="https://googleapis.com" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin />
+    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cloudflare.com" />
+    <link rel="stylesheet" href="register.css">
+</head>
+
+<body>
+
+<div id="toast" class="toast"></div>
+
+    <div class="container">
+
+        <div class="left-section">
+            <h1  class="typing-effect">Company Payroll Management System</h1>
+            <p>Track and manage user engagement on your app</p>
+        </div>
+    
+
+        <div class="right-section">
+            <h1>Create Account</h1>
+            <p>Sign up to start managing payroll</p>
+            
+            <input type="text" id="register-fullname" placeholder="Enter full name" required>
+            <input type="email" id="register-email" placeholder="Enter your email" required>
+            <input type="password" id="register-password" placeholder="Enter your password" required>
+            
+
+            <button id="register-submit-btn">Register</button>
+
+            <span class="login-text">Already have an account? <a href="login.html" id="go-to-login">Login</a></span>
+        </div>
+
+    </div>
+
+     <script src="auth.js"></script>
+
+</body>
+
+</html>

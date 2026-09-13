@@ -1,27 +1,35 @@
 package ng.companypayroll.controller;
 
+import lombok.NoArgsConstructor;
 import ng.companypayroll.dto.request.LoginRequest;
+import ng.companypayroll.dto.request.UserRequest;
 import ng.companypayroll.dto.response.LoginResponse;
 import ng.companypayroll.dto.response.UserResponse;
 import ng.companypayroll.services.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+@NoArgsConstructor
 @RestController
 @RequestMapping("/auth")
+@CrossOrigin(origins = "http://127.0.0.1:5500")
 public class AuthController {
 
-    private final AuthService authService;
+    @Autowired
+    private  AuthService authService;
 
-    public  AuthController(AuthService authService) {
-        this.authService = authService;
+    @PostMapping("/register")
+    public UserResponse register(@RequestBody UserRequest request) {
+        return authService.register(request);
     }
 
     @PostMapping("/login")
     public LoginResponse login(@RequestBody LoginRequest request) {
         return authService.login(request);
+    }
+
+    @PostMapping("/logout")
+    public String logout() {
+        return authService.logout();
     }
 }
