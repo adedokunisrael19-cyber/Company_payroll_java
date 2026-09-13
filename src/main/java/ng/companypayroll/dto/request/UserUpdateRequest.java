@@ -9,13 +9,13 @@ import ng.companypayroll.data.model.Role;
 
 @Data
 public class UserUpdateRequest {
-    @NotBlank
+    @NotBlank (message = "full name is required")
     private String fullName;
     @NotBlank
-    @Email
+    @Email (message = "Enter a valid email")
     private String email;
-    @NotBlank
+    @NotBlank (message = "Password is required")
     private String password;
-    @NotNull
+    @NotNull (message = "Role is required")
     private Role role;
 }
