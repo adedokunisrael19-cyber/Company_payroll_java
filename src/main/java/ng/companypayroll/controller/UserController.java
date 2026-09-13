@@ -1,5 +1,6 @@
 package ng.companypayroll.controller;
 
+import jakarta.validation.Valid;
 import ng.companypayroll.dto.request.UserRequest;
 import ng.companypayroll.dto.request.UserUpdateRequest;
 import ng.companypayroll.dto.response.UserResponse;
@@ -16,7 +17,7 @@ public class UserController {
     }
 
     @PostMapping
-    public UserResponse createUser(@RequestBody UserRequest request) {
+    public UserResponse createUser(@Valid @RequestBody UserRequest request) {
         return userService.createUser(request);
     }
     @GetMapping("/{id}")
@@ -25,7 +26,7 @@ public class UserController {
     }
 
     @PutMapping("/{Id}")
-    public UserResponse updateUser(@PathVariable String Id, @RequestBody UserUpdateRequest request) {
+    public UserResponse updateUser(@PathVariable String Id, @Valid @RequestBody UserUpdateRequest request) {
         return userService.updateUser(Id, request);
     }
 
