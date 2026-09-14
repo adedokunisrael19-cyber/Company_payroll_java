@@ -2,11 +2,13 @@
 <html>
 
 <head>
-    <title>Register</title>
+    <title>Register || Company Payroll Management System</title>
     <link rel="preconnect" href="https://googleapis.com" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="favicon.png?v=2">
     <link rel="preconnect" href="https://gstatic.com" crossorigin />
     <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link rel="stylesheet" href="https://cloudflare.com" />
     <link rel="stylesheet" href="register.css">
 </head>
@@ -29,8 +31,10 @@
             
             <input type="text" id="register-fullname" placeholder="Enter full name" required>
             <input type="email" id="register-email" placeholder="Enter your email" required>
+             <div class="password-wrapper">
             <input type="password" id="register-password" placeholder="Enter your password" required>
-            
+            <i class="far fa-eye" id="toggle-password-eye"></i>
+             </div>
 
             <button id="register-submit-btn">Register</button>
 
@@ -40,6 +44,7 @@
     </div>
 
      <script src="auth.js"></script>
+     
 
 </body>
 

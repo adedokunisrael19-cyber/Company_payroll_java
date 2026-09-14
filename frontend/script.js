@@ -1,3 +1,4 @@
+
 const payrollDashboardSection = document.getElementById('payroll-dashboard-section');
 const payrollManagementSection = document.getElementById('payroll-management-section');
 const employeeManagementSection = document.getElementById('employee-management-section');
