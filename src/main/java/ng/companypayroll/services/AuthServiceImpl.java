@@ -12,13 +12,15 @@ import ng.companypayroll.exceptions.InvalidCredentials;
 import ng.companypayroll.exceptions.UserAlreadyExistException;
 import ng.companypayroll.exceptions.UserNotFoundException;
 import ng.companypayroll.utils.Mapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
 
-    private final UserRepository userRepository;
+    @Autowired
+    private  UserRepository userRepository;
 
     @Override
     public UserResponse register(UserRequest request) {
