@@ -2,6 +2,7 @@ package ng.companypayroll.utils;
 
 import ng.companypayroll.data.model.Role;
 import ng.companypayroll.data.model.User;
+import ng.companypayroll.dto.request.LoginRequest;
 import ng.companypayroll.dto.request.UserRequest;
 import ng.companypayroll.dto.response.LoginResponse;
 import ng.companypayroll.dto.response.UserResponse;
@@ -31,5 +32,17 @@ public class Mapper {
 
         return response;
     }
+
+
+    public static LoginResponse map(LoginRequest request, User user) {
+        LoginResponse response = new LoginResponse();
+        response.setEmail(request.getEmail());
+        response.setId(user.getId());
+        response.setFullName(user.getFullName());
+        response.setRole(user.getRole());
+
+        return response;
+    }
+
 
 }

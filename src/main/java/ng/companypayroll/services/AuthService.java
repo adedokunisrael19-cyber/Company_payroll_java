@@ -1,9 +1,12 @@
 package ng.companypayroll.services;
 
 import ng.companypayroll.dto.request.LoginRequest;
+import ng.companypayroll.dto.request.UserRequest;
 import ng.companypayroll.dto.response.LoginResponse;
-import ng.companypayroll.exceptions.InvalidCredentials;
+import ng.companypayroll.dto.response.UserResponse;
 
 public interface AuthService {
-    LoginResponse login(LoginRequest request) throws InvalidCredentials;
+    UserResponse register(UserRequest request);
+    LoginResponse login(LoginRequest request);
+    String logout();
 }
