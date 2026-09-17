@@ -20,15 +20,20 @@ public class AuthServiceImpl implements AuthService  {
     @Autowired
     private UserRepository userRepository;
 
-    public LoginResponse login(LoginRequest request) throws InvalidCredentials {
-        User user = userRepository.findByEmail(request.getEmail()).orElseThrow(() -> new UserNotFoundException("User not found"));
-        if(!user.getPassword().equals(request.getPassword())) {
-            throw new InvalidCredentials("Incorrect  Username or password");
-        }
-        User user = Mapper.map(request);
-        user.setRole(Role.EMPLOYEE);
-        User savedUser = userRepository.save(user);
-        return Mapper.map(savedUser);
+//    public LoginResponse login(LoginRequest request) throws InvalidCredentials {
+//        User user = userRepository.findByEmail(request.getEmail()).orElseThrow(() -> new UserNotFoundException("User not found"));
+//        if(!user.getPassword().equals(request.getPassword())) {
+//            throw new InvalidCredentials("Incorrect  Username or password");
+//        }
+//        User user = Mapper.map(request);
+//        user.setRole(Role.EMPLOYEE);
+//        User savedUser = userRepository.save(user);
+//        return Mapper.map(savedUser);
+//    }
+
+    @Override
+    public UserResponse register(UserRequest request) {
+        return null;
     }
 
     @Override
