@@ -2,7 +2,7 @@ package ng.companypayroll.controller;
 
 import ng.companypayroll.dto.request.LoginRequest;
 import ng.companypayroll.dto.response.LoginResponse;
-import ng.companypayroll.dto.response.UserResponse;
+import ng.companypayroll.exceptions.InvalidCredentials;
 import ng.companypayroll.services.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,14 +14,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/auth")
 public class AuthController {
 
-    private final AuthService authService;
+    @Autowired
+    private AuthService authService;
 
-    public  AuthController(AuthService authService) {
-        this.authService = authService;
+    public  AuthController() {
+
     }
 
     @PostMapping("/login")
-    public LoginResponse login(@RequestBody LoginRequest request) {
+    public LoginResponse login(@RequestBody LoginRequest request) throws InvalidCredentials {
         return authService.login(request);
     }
+
+
 }

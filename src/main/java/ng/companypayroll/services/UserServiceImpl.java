@@ -11,6 +11,7 @@ import ng.companypayroll.exceptions.UserNotFoundException;
 import ng.companypayroll.utils.Mapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -55,11 +56,18 @@ public class UserServiceImpl implements UserService {
         user.setFullName(request.getFullName());
         user.setEmail(request.getEmail());
         user.setPassword(request.getPassword());
-        user.setRole(request.getRole());
 
         User updatedUser = userRepository.save(user);
 
         return Mapper.map(updatedUser);
+    }
+
+    @Override
+    public List<UserResponse> getAllUsers() {
+        return userRepository.findAll()
+                .stream()
+                .map(Mapper::map)
+                .toList();
     }
 
     @Override

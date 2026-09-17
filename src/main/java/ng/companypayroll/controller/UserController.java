@@ -7,6 +7,8 @@ import ng.companypayroll.dto.response.UserResponse;
 import ng.companypayroll.services.UserService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -20,6 +22,7 @@ public class UserController {
     public UserResponse createUser(@Valid @RequestBody UserRequest request) {
         return userService.createUser(request);
     }
+
     @GetMapping("/{id}")
     public UserResponse getUserById(@PathVariable String Id) {
         return userService.getUserbyId(Id);
@@ -30,10 +33,14 @@ public class UserController {
         return userService.updateUser(Id, request);
     }
 
+    @GetMapping
+    public List<UserResponse> getAllUsers() {
+        return userService.getAllUsers();
+    }
+
     @DeleteMapping("/{Id}")
     public void deleteUser(@PathVariable String Id) {
         userService.deleteUser(Id);
     }
-
 
 }

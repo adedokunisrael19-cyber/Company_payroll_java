@@ -1,5 +1,6 @@
 package ng.companypayroll.utils;
 
+import ng.companypayroll.data.model.Role;
 import ng.companypayroll.data.model.User;
 import ng.companypayroll.dto.request.UserRequest;
 import ng.companypayroll.dto.response.LoginResponse;
@@ -15,7 +16,7 @@ public class Mapper {
         user.setFullName(request.getFullName());
         user.setPassword(request.getPassword());
         user.setEmail(request.getEmail());
-        user.setRole(request.getRole());
+        user.setRole(Role.EMPLOYEE);
 
         return user;
     }

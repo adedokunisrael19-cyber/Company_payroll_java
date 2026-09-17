@@ -9,15 +9,15 @@ import ng.companypayroll.exceptions.InvalidCredentials;
 import ng.companypayroll.exceptions.UserNotFoundException;
 import ng.companypayroll.utils.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public class AuthServiceImpl {
+@Service
+public class AuthServiceImpl implements AuthService  {
     @Autowired
     private UserRepository userRepository;
 
     public LoginResponse login(LoginRequest request) throws InvalidCredentials {
-        User user = userRepository.findByEmail(request.getEmail())
-                .orElseThrow(() ->
-                        new UserNotFoundException("User not found"));
+        User user = userRepository.findByEmail(request.getEmail()).orElseThrow(() -> new UserNotFoundException("User not found"));
         if(!user.getPassword().equals(request.getPassword())) {
             throw new InvalidCredentials("Incorrect  Username or password");
         }

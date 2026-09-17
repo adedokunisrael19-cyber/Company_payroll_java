@@ -36,7 +36,6 @@ class UserServiceImplTest {
         request.setFullName("John Doe");
         request.setEmail("john@gmail.com");
         request.setPassword("1234");
-        request.setRole(Role.EMPLOYEE);
 
         User user = new User();
         user.setFullName("John Doe");
@@ -125,7 +124,6 @@ class UserServiceImplTest {
         request.setFullName("John Smith");
         request.setEmail("johnsmith@gmail.com");
         request.setPassword("5678");
-        request.setRole(Role.EMPLOYEE);
 
         UserResponse response = new UserResponse();
         response.setId("1");
