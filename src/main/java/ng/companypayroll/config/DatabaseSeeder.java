@@ -18,7 +18,7 @@ public class DatabaseSeeder implements CommandLineRunner {
     public void run(String... args) throws Exception {
         String adminEmail = "admin@company.com";
 
-        if(userRepository.findByEmail(adminEmail).isEmpty()){
+        if(userRepository.findByEmail(adminEmail) == null){
             User admin = new User();
             admin.setEmail(adminEmail);
             admin.setPassword("Password123");
@@ -26,7 +26,7 @@ public class DatabaseSeeder implements CommandLineRunner {
             userRepository.save(admin);
 
 
-            System.out.println("System Admin account successfully seeded.");
+           // System.out.println("System Admin account successfully seeded.");
 
         }
     }

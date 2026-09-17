@@ -18,10 +18,10 @@ public class AuthController {
     @Autowired
     private  AuthService authService;
 
-    @PostMapping("/register")
-    public UserResponse register(@RequestBody UserRequest request) {
-        return authService.register(request);
-    }
+//    @PostMapping("/register")
+//    public UserResponse register(@RequestBody UserRequest request) {
+//        return authService.register(request);
+//    }
 
     @PostMapping("/login")
     public LoginResponse login(@RequestBody LoginRequest request) throws InvalidCredentials {
