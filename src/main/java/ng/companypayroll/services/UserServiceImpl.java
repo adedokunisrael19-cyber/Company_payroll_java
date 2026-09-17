@@ -52,7 +52,6 @@ public class UserServiceImpl implements UserService {
         user.setFullName(request.getFullName());
         user.setEmail(request.getEmail());
         user.setPassword(request.getPassword());
-        user.setRole(request.getRole());
 
         User updatedUser = userRepository.save(user);
 
@@ -60,9 +59,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(String id) {
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException("User not found"));
+    public List<UserResponse> getAllUsers() {
+        return userRepository.findAll()
+                .stream()
+                .map(Mapper::map)
+                .toList();
+    }
+
+    @Override
+    public void deleteUser(String Id) {
+        User user = userRepository.findById(Id).orElseThrow(() ->
+                new UserNotFoundException("User not found"));
         userRepository.delete(user);
     }
 }

@@ -12,19 +12,18 @@ import ng.companypayroll.exceptions.InvalidCredentials;
 import ng.companypayroll.exceptions.UserAlreadyExistException;
 import ng.companypayroll.exceptions.UserNotFoundException;
 import ng.companypayroll.utils.Mapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
-public class AuthServiceImpl implements AuthService {
+public class AuthServiceImpl implements AuthService  {
+    @Autowired
+    private UserRepository userRepository;
 
-    private final UserRepository userRepository;
-
-    @Override
-    public UserResponse register(UserRequest request) {
-        User existingUser = userRepository.findByEmail(request.getEmail());
-        if (existingUser != null) {
-            throw new UserAlreadyExistException("User already exists");
+    public LoginResponse login(LoginRequest request) throws InvalidCredentials {
+        User user = userRepository.findByEmail(request.getEmail()).orElseThrow(() -> new UserNotFoundException("User not found"));
+        if(!user.getPassword().equals(request.getPassword())) {
+            throw new InvalidCredentials("Incorrect  Username or password");
         }
         User user = Mapper.map(request);
         user.setRole(Role.EMPLOYEE);

@@ -4,10 +4,13 @@ import ng.companypayroll.dto.request.UserRequest;
 import ng.companypayroll.dto.request.UserUpdateRequest;
 import ng.companypayroll.dto.response.UserResponse;
 
+import java.util.List;
+
 public interface UserService {
     UserResponse createUser(UserRequest request);
     UserResponse getUserById(String Id);
     UserResponse updateUser(String Id, UserUpdateRequest request);
+    List<UserResponse> getAllUsers();
     void deleteUser(String Id);
 
 }

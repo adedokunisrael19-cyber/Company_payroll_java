@@ -4,7 +4,7 @@ import lombok.NoArgsConstructor;
 import ng.companypayroll.dto.request.LoginRequest;
 import ng.companypayroll.dto.request.UserRequest;
 import ng.companypayroll.dto.response.LoginResponse;
-import ng.companypayroll.dto.response.UserResponse;
+import ng.companypayroll.exceptions.InvalidCredentials;
 import ng.companypayroll.services.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +24,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public LoginResponse login(@RequestBody LoginRequest request) {
+    public LoginResponse login(@RequestBody LoginRequest request) throws InvalidCredentials {
         return authService.login(request);
     }
 
